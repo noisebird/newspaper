@@ -1,0 +1,38 @@
+1.使用webpack说明
+npm install -g webpack ---全局安装webpack
+npm install --save-dev webpack  本地安装webpack
+
+2.创建目录app,public,webpack.config.js
+如果不使用webpack.config.js文件需要在cmd窗口中执行
+webpack app/main.js public/bundle.js
+
+	webpack中的配置
+	module.exports={
+		entry: __dirname + "/app/main.js",
+   
+   		output: {
+       		 path: __dirname + "/public",
+       		 filename: "bundle.js"
+   		}
+	}
+3.使用npm引导任务执行
+	在package.json文件中配置scripts选项，加上"start":"webpack",start命令是一个
+	特殊的脚本名称，如果不是start命令，需要执行npm run 脚本名
+
+4. webpack生成source map（调试代码）
+	devtool的四种配置
+		source-map
+		cheap-module-source-map
+		eval-source-map
+		cheap-module-eval-source-map
+
+5.使用webpack构建本地服务器
+	npm install --save-dev webpack-dev-server
+	配置
+	devServer: {
+	    contentBase: "./public",//本地服务器所加载的页面所在的目录
+	    historyApiFallback: true,//在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，所有的跳转将指向index.html
+	    inline: true//实时刷新
+	} 
+
+6.Loaders 使用loaders webpack有能力调用外部的脚本或工具，实现对不同格式的文件的处理，比如说分析转换SCSS为css，或者ES6语法转换为ES5，对react开发而言可以吧React中用到的jsx文件转换为js文件
